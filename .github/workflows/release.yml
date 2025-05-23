@@ -29,28 +29,32 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pyinstaller pillow pyperclip pystray python-dotenv
 
-      - name: Build on Windows
-        if: runner.os == 'Windows'
+      - name: Build Executable
         run: |
-          pyinstaller --onefile --noconsole --icon src/tray_icon.ico src/main.py
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            pyinstaller --onefile --noconsole --icon src/tray_icon.ico src/main.py
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            pyinstaller --onefile --windowed --icon src/tray_icon.icns src/main.py
+          elif [ "$RUNNER_OS" == "Linux" ]; then
+            pyinstaller --onefile --icon src/tray_icon.png src/main.py
+          fi
 
-      - name: Build on macOS
-        if: runner.os == 'macOS'
+      - name: Rename Binaries
         run: |
-          pyinstaller --onefile --windowed --icon src/tray_icon.icns src/main.py
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            mv dist/main.exe dist/AIImageTokenSaver.exe
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            mv dist/main dist/AIImageTokenSaver-mac
+          elif [ "$RUNNER_OS" == "Linux" ]; then
+            mv dist/main dist/AIImageTokenSaver-linux
+          fi
 
-      - name: Build on Linux
-        if: runner.os == 'Linux'
-        run: |
-          pyinstaller --onefile --icon src/tray_icon.png src/main.py
-
-      - name: Upload Artifacts
+      - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/*.exe
-            dist/main
-            dist/*.dmg
-            dist/*.pkg
+            dist/AIImageTokenSaver.exe
+            dist/AIImageTokenSaver-mac
+            dist/AIImageTokenSaver-linux
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
