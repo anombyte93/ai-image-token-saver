@@ -1,45 +1,43 @@
-# src/startup.py
 
-def add_to_startup():
-    import platform
-    import os
+import os
+import platform
+import sys
+import shutil
+import subprocess
 
-    if platform.system() == "Windows":
-        try:
+def uninstall():
+    try:
+        # 1. Remove logs and config
+        config_path = os.path.expanduser("~/.ai_image_token_saver/")
+        if os.path.exists(config_path):
+            shutil.rmtree(config_path)
+
+        # 2. Remove autostart entries
+        if platform.system() == "Windows":
             import winshell
-            from win32com.client import Dispatch
-            import sys
+            shortcut = os.path.join(winshell.startup(), "AIImageTokenSaver.lnk")
+            if os.path.exists(shortcut):
+                os.remove(shortcut)
+        elif platform.system() == "Linux":
+            desktop_entry = os.path.expanduser("~/.config/autostart/ai-image-token-saver.desktop")
+            if os.path.exists(desktop_entry):
+                os.remove(desktop_entry)
 
-            startup_path = winshell.startup()
-            shortcut_path = os.path.join(startup_path, "AIImageTokenSaver.lnk")
-            target = sys.executable
-            script = os.path.abspath(__file__)
+        # 3. Uninstall packages
+        subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y",
+                        "pillow", "pyperclip", "pystray", "python-dotenv"])
 
-            shell = Dispatch('WScript.Shell')
-            shortcut = shell.CreateShortcut(shortcut_path)
-            shortcut.TargetPath = target
-            shortcut.Arguments = f'"{script}"'
-            shortcut.WorkingDirectory = os.path.dirname(script)
-            shortcut.IconLocation = os.path.join(os.path.dirname(script), "../tray_icon.ico")
-            shortcut.save()
-        except Exception as e:
-            print(f"[!] Failed to add to startup: {e}")
-
-    elif platform.system() == "Linux":
+        # 4. Confirmation popup for tray mode
         try:
-            autostart_dir = os.path.expanduser("~/.config/autostart")
-            os.makedirs(autostart_dir, exist_ok=True)
-            desktop_path = os.path.join(autostart_dir, "ai-image-token-saver.desktop")
-            with open(desktop_path, "w") as f:
-                f.write("""
-[Desktop Entry]
-Name=AIImageTokenSaver
-Comment=Auto image optimizer for Claude API
-Exec=python3 ~/AIImageTokenSaver/main.py
-Icon=~/AIImageTokenSaver/tray_icon.png
-Terminal=false
-Type=Application
-X-GNOME-Autostart-enabled=true
-""")
-        except Exception as e:
-            print(f"[!] Failed to create autostart entry: {e}")
+            from tkinter import messagebox, Tk
+            root = Tk()
+            root.withdraw()
+            messagebox.showinfo("AIImageTokenSaver", "✅ Uninstall complete. You may delete the file manually.")
+        except Exception:
+            print("✅ Uninstall complete.")
+
+    except Exception as e:
+        print(f"❌ Error during uninstall: {e}")
+
+if __name__ == "__main__":
+    uninstall()
