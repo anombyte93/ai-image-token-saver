@@ -46,13 +46,13 @@ jobs:
       - name: Build Binary
         run: ${{ matrix.pyinstaller_cmd }}
 
-      - name: Rename Binary
-        run: |
-          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-            mv dist/main.exe dist/${{ matrix.artifact_name }}
-          else
-            mv dist/main dist/${{ matrix.artifact_name }}
-          fi
+      - name: Rename Windows Binary
+        if: runner.os == 'Windows'
+        run: mv dist/main.exe dist/${{ matrix.artifact_name }}
+
+      - name: Rename non-Windows Binary
+        if: runner.os != 'Windows'
+        run: mv dist/main dist/${{ matrix.artifact_name }}
 
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v1
