@@ -13,7 +13,21 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        include:
+          - os: windows-latest
+            artifact_name: AIImageTokenSaver.exe
+            pyinstaller_cmd: pyinstaller --onefile --noconsole --icon src/tray_icon.ico src/main.py
+            upload_path: dist/AIImageTokenSaver.exe
+
+          - os: macos-latest
+            artifact_name: AIImageTokenSaver-mac
+            pyinstaller_cmd: pyinstaller --onefile --windowed --icon src/tray_icon.icns src/main.py
+            upload_path: dist/AIImageTokenSaver-mac
+
+          - os: ubuntu-latest
+            artifact_name: AIImageTokenSaver-linux
+            pyinstaller_cmd: pyinstaller --onefile --icon src/tray_icon.png src/main.py
+            upload_path: dist/AIImageTokenSaver-linux
 
     steps:
       - name: Checkout Repo
@@ -29,32 +43,20 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pyinstaller pillow pyperclip pystray python-dotenv
 
-      - name: Build Executable
-        run: |
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            pyinstaller --onefile --noconsole --icon src/tray_icon.ico src/main.py
-          elif [ "$RUNNER_OS" == "macOS" ]; then
-            pyinstaller --onefile --windowed --icon src/tray_icon.icns src/main.py
-          elif [ "$RUNNER_OS" == "Linux" ]; then
-            pyinstaller --onefile --icon src/tray_icon.png src/main.py
-          fi
+      - name: Build Binary
+        run: ${{ matrix.pyinstaller_cmd }}
 
-      - name: Rename Binaries
+      - name: Rename Binary
         run: |
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            mv dist/main.exe dist/AIImageTokenSaver.exe
-          elif [ "$RUNNER_OS" == "macOS" ]; then
-            mv dist/main dist/AIImageTokenSaver-mac
-          elif [ "$RUNNER_OS" == "Linux" ]; then
-            mv dist/main dist/AIImageTokenSaver-linux
+          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+            mv dist/main.exe dist/${{ matrix.artifact_name }}
+          else
+            mv dist/main dist/${{ matrix.artifact_name }}
           fi
 
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            dist/AIImageTokenSaver.exe
-            dist/AIImageTokenSaver-mac
-            dist/AIImageTokenSaver-linux
+          files: ${{ matrix.upload_path }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
