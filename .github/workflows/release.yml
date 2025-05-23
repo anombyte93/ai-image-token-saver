@@ -16,17 +16,17 @@ jobs:
         include:
           - os: windows-latest
             artifact_name: AIImageTokenSaver.exe
-            pyinstaller_cmd: pyinstaller --onefile --noconsole --icon src/tray_icon.ico src/main.py
+            pyinstaller_cmd: pyinstaller --onefile --noconsole --icon src/tray_icon.ico --paths=src src/main.py
             upload_path: dist/AIImageTokenSaver.exe
 
           - os: macos-latest
             artifact_name: AIImageTokenSaver-mac
-            pyinstaller_cmd: pyinstaller --onefile --windowed --icon src/tray_icon.icns src/main.py
+            pyinstaller_cmd: pyinstaller --onefile --windowed --icon src/tray_icon.icns --paths=src src/main.py
             upload_path: dist/AIImageTokenSaver-mac
 
           - os: ubuntu-latest
             artifact_name: AIImageTokenSaver-linux
-            pyinstaller_cmd: pyinstaller --onefile --icon src/tray_icon.png src/main.py
+            pyinstaller_cmd: pyinstaller --onefile --icon src/tray_icon.png --paths=src src/main.py
             upload_path: dist/AIImageTokenSaver-linux
 
     steps:

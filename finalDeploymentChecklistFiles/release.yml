@@ -29,11 +29,11 @@ jobs:
       - name: Build Binary
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
-            pyinstaller --onefile --noconsole --icon tray_icon.ico src/main.py
+            pyinstaller --onefile --noconsole --icon tray_icon.ico --paths=src src/main.py
           elif [ "$RUNNER_OS" == "Linux" ]; then
-            pyinstaller --onefile --icon src/tray_icon.png src/main.py
+            pyinstaller --onefile --icon src/tray_icon.png --paths=src src/main.py
           elif [ "$RUNNER_OS" == "macOS" ]; then
-            pyinstaller --onefile --windowed --icon src/tray_icon.icns src/main.py
+            pyinstaller --onefile --windowed --icon src/tray_icon.icns --paths=src src/main.py
           fi
 
       - name: Upload to Release
