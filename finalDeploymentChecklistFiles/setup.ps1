@@ -13,8 +13,8 @@ if (-Not (Test-Path $targetDir)) {
 }
 
 # Download EXE and icon
-Invoke-WebRequest -Uri "https://github.com/anombyte/AIImageTokenSaver/releases/latest/download/AIImageTokenSaver.exe" -OutFile $exePath
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/tray_icon.ico" -OutFile $iconPath
+Invoke-WebRequest -Uri "https://github.com/anombyte93/AIImageTokenSaver/releases/latest/download/AIImageTokenSaver.exe" -OutFile $exePath
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/tray_icon.ico" -OutFile $iconPath
 
 # Create desktop shortcut
 $shell = New-Object -ComObject WScript.Shell

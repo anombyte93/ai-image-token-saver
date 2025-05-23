@@ -23,24 +23,24 @@
 **One-liner:**
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/setup.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/setup.ps1 | iex
 ```
 
 Or Download .exe
-[⬇ Download AIImageTokenSaver.exe](https://github.com/anombyte/AIImageTokenSaver/releases/latest/download/AIImageTokenSaver.exe)
+[⬇ Download AIImageTokenSaver.exe](https://github.com/anombyte93/AIImageTokenSaver/releases/latest/download/AIImageTokenSaver.exe)
 
 ### 🐧 Linux
 
 Run this in your terminal:
 
 ```bat
-bash <(curl -s https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/install.sh)
 ```
 
 Or use binary:
 
 ```bat
-curl -LO https://github.com/anombyte/AIImageTokenSaver/releases/latest/download/main
+curl -LO https://github.com/anombyte93/AIImageTokenSaver/releases/latest/download/main
 chmod +x main
 ./main
 ```
@@ -50,10 +50,10 @@ chmod +x main
 One-liner (soon):
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/install_mac.sh)
+bash <(curl -s https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/install_mac.sh)
 ```
 
-Or download .dmg/.pkg from the [latest release](https://github.com/anombyte/AIImageTokenSaver/releases/latest)
+Or download .dmg/.pkg from the [latest release](https://github.com/anombyte93/AIImageTokenSaver/releases/latest)
 🧼 Uninstall
 Right-click tray → Uninstall
 
@@ -62,7 +62,7 @@ Removes config, logs, and binaries
 ### 🧠 For Developers
 
 ```bat
-git clone https://github.com/anombyte/AIImageTokenSaver.git
+git clone https://github.com/anombyte93/AIImageTokenSaver.git
 cd AIImageTokenSaver
 pip install -r requirements.txt
 python main.py
@@ -70,7 +70,7 @@ python main.py
 
 ###☕ Support Development
 [☕ Buy me a coffee](
-[☕ Buy me a coffee](https://buymeacoffee.com/anombyte))
+[☕ Buy me a coffee](https://buymeacoffee.com/anombyte93))
 
 ### 🔒 License
 

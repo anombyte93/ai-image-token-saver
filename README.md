@@ -1,4 +1,3 @@
-
 # 🖼 AIImageTokenSaver
 
 The cutest Claude image optimizer — compress clipboard screenshots to save tokens and money in Claude API.
@@ -21,11 +20,11 @@ The cutest Claude image optimizer — compress clipboard screenshots to save tok
 
 One-liner (PowerShell):
 
-Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/setup.ps1 | Invoke-Expression
+Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/setup.ps1 | Invoke-Expression
 
 Or manually run `setup.bat` or download:
 
-[⬇ Download AIImageTokenSaver.exe](https://github.com/anombyte/AIImageTokenSaver/releases/latest/download/AIImageTokenSaver.exe)
+[⬇ Download AIImageTokenSaver.exe](https://github.com/anombyte93/AIImageTokenSaver/releases/latest/download/AIImageTokenSaver.exe)
 
 ---
 
@@ -33,11 +32,13 @@ Or manually run `setup.bat` or download:
 
 Run this in terminal:
 
-bash <(curl -s https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/install.sh)
+```bash
+<(curl -s https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/install.sh)
+```
 
 Or download the binary manually:
 
-[⬇ Download Linux binary](https://github.com/anombyte/AIImageTokenSaver/releases/latest/download/main)
+[⬇ Download Linux binary](https://github.com/anombyte93/AIImageTokenSaver/releases/latest/download/main)
 
 ---
 
@@ -45,20 +46,23 @@ Or download the binary manually:
 
 Run this in terminal:
 
-bash <(curl -s https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/install_mac.sh)
+```bash
+<(curl -s https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/install_mac.sh)
+```
 
 Or download the `.dmg` or `.pkg`:
 
-[⬇ Download macOS Installer](https://github.com/anombyte/AIImageTokenSaver/releases/latest)
+[⬇ Download macOS Installer](https://github.com/anombyte93/AIImageTokenSaver/releases/latest)
 
 ---
 
 ## 🧪 Developer Setup
 
-git clone https://github.com/anombyte/AIImageTokenSaver.git
+````bash
+git clone https://github.com/anombyte93/AIImageTokenSaver.git
 cd AIImageTokenSaver
 pip install -r requirements.txt
-python main.py
+python main.py```
 
 ---
 
@@ -82,10 +86,11 @@ python main.py
 
 ## ☕ Support Development
 
-[Buy me a coffee →](https://buymeacoffee.com/anombyte)
+[Buy me a coffee →](https://buymeacoffee.com/anombyte93)
 
 ---
 
 ## 🔒 License
 
 MIT — Free to use, modify, and redistribute. Credit appreciated 💚
+````

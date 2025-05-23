@@ -14,16 +14,16 @@ mkdir -p ~/AIImageTokenSaver/src
 cd ~/AIImageTokenSaver
 
 # Download main.py and required files
-curl -O https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/main.py
-curl -O https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/tray_icon.png
+curl -O https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/main.py
+curl -O https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/tray_icon.png
 
 # Download all src modules
 cd src
-curl -O https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/src/config.py
-curl -O https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/src/clipboard.py
-curl -O https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/src/startup.py
-curl -O https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/src/uninstall.py
-curl -O https://raw.githubusercontent.com/anombyte/AIImageTokenSaver/main/src/tray.py
+curl -O https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/src/config.py
+curl -O https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/src/clipboard.py
+curl -O https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/src/startup.py
+curl -O https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/src/uninstall.py
+curl -O https://raw.githubusercontent.com/anombyte93/AIImageTokenSaver/main/src/tray.py
 
 cd ..
 

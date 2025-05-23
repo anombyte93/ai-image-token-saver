@@ -4,7 +4,7 @@ echo "📦 Installing AIImageTokenSaver for macOS..."
 
 # Download latest DMG or PKG from GitHub Releases
 cd /tmp
-curl -LO https://github.com/anombyte/AIImageTokenSaver/releases/latest/download/AIImageTokenSaver.dmg
+curl -LO https://github.com/anombyte93/AIImageTokenSaver/releases/latest/download/AIImageTokenSaver.dmg
 
 # Mount the DMG
 hdiutil attach AIImageTokenSaver.dmg
